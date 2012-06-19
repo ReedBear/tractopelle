@@ -1,0 +1,27 @@
+{
+   "name" : "tractopelle",
+   "version" : "0.0.1",
+   "main" : "./main",
+   "description": "A small game.",
+   "keywords": [
+          "game"
+    ],
+    "maintainers": [
+          {
+              "name": "Arthur Jamain",
+              "email": "arthur.jamain@gmail.com",
+              "web": "http://arthurjamain.me" 
+          } 
+    ],
+    "contributors": [],
+    "dependencies": {
+        "express": "2.x.x",
+        "socket.io": "0.x.x"
+    },
+    "licenses": [
+          {
+              "type": "GPLv2",
+              "url": "http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" 
+          }
+    ]
+}
