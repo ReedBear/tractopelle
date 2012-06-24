@@ -83,7 +83,7 @@ define(function() {
     update: function() {
       var self = PhysicsHandler;
 
-      self.world.Step(
+      self.world.Step (
         1 / 60,   //frame-rate
         10,       //velocity iterations
         10        //position iterations

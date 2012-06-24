@@ -18,6 +18,5 @@ define(function() {
       var self = this;
       $('body').append(self.el);
     }
-
   })
 });
