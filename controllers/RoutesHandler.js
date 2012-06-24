@@ -1,3 +1,3 @@
 exports.index = function(req, res) {
-  res.send("Pouet pouet pouet");
+  res.render("home", {layout: false});
 };
