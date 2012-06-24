@@ -16,8 +16,7 @@ define(function() {
 
     render: function() {
       var self = this;
-      
-      $z('body').append(self.el);
+      $('body').append(self.el);
     }
 
   })

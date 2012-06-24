@@ -6,9 +6,27 @@
     <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
 
     <!-- Regular Dependencies -->
+    <script type="text/javascript" src="js/lib/box2d.js"></script>
     <script type="text/javascript" src="js/lib/zepto.js"></script>
     <script type="text/javascript" src="js/lib/underscore.js"></script>
     <script type="text/javascript" src="js/lib/backbone.js"></script>
+
+    <!-- Config -->
+    <script type="text/javascript">
+      // Define RAF Paul Irish style
+      window.requestAnimFrame = (function(){
+        return  window.requestAnimationFrame       || 
+                window.webkitRequestAnimationFrame || 
+                window.mozRequestAnimationFrame    || 
+                window.oRequestAnimationFrame      || 
+                window.msRequestAnimationFrame     || 
+                function( callback ){
+                  window.setTimeout(callback, 1000 / 60);
+                };
+      })();
+    </script>
+
+    <!-- Main -->
     <script type="text/javascript" data-main="js/main.js" src="js/lib/require.js"></script>
   </head>
 
