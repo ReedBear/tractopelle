@@ -1,6 +1,6 @@
 ### Installation
 
-Go insite the folder and run :
+Go inside the folder and run :
 
     npm install
 
