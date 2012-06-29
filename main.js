@@ -16,7 +16,6 @@ app.configure(function () {
   app.set('view engine', 'ejs');
 });
 
-
 app.configure('development', function() {
   app.use(express.static(path.join(application_root, 'public')));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
