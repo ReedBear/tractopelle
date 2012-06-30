@@ -1,12 +1,12 @@
 var application_root = __dirname,
   express = require('express'),
+  app = express.createServer(),
+  io = require('socket.io').listen(app),
   fs = require("fs"),
   path = require('path'),
   less = require('less'),
-  ejs = require('ejs'),
-  routesHandler = require('./controllers/RoutesHandler');
+  ejs = require('ejs');
 
-var app = express.createServer();
 
 // App Configuration
 app.configure(function () {
@@ -41,9 +41,25 @@ app.get("*.less", function(req, res) {
   });
 });
 
+
 // Routes
 app.get('/', function (req, res) {
-  routesHandler.index(req, res);
+  res.render('home', { layout: false });
+});
+
+app.get('/r/:id', function (req, res) {
+  var roomId = req.params.id;
+  console.log(roomId);
+
+  io.sockets.on('connection', function (socket) {
+    socket.emit('ready', { 'message': "You're in room:" + roomId});
+
+    socket.on('set nickname', function (name) {
+      socket.set('nickname', name, function () {
+        socket.emit('ready');
+      });
+    });
+  });
 });
 
 
