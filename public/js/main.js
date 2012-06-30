@@ -1,5 +1,6 @@
-require(['js/CanvasView.js',
-         'js/PhysicsHandler.js'], function(CanvasView, PhysicsHandler) {
+require(['CanvasView',
+         'GameHandler'], function(CanvasView, GameHandler) {
+
     var canvas = new CanvasView({
       id: 'scene',
       attributes: {
@@ -7,5 +8,6 @@ require(['js/CanvasView.js',
         height: '600px'
       }
     });
-    PhysicsHandler.init(canvas.el);
+
+    GameHandler.init(canvas.el);
 });
