@@ -1,4 +1,4 @@
-define(['Player'], function(Player) {
+define(['Player', 'Arena'], function(Player, Arena) {
   var GameHandler = {
 
     world: null,
@@ -47,6 +47,9 @@ define(['Player'], function(Player) {
       this.thePlayer = new Player();
       this.thePlayer.addToWorld(this.world);
 
+      this.theArena = new Arena();
+      this.theArena.addToWorld(this.world);
+
 
       // Start the loop
       requestAnimFrame(GameHandler.update);
@@ -72,19 +75,35 @@ define(['Player'], function(Player) {
       $(window).on('keydown', function(e) {
         switch(e.which) {
           case 37:
-            self.thePlayer.force(180, 100);
+            self.thePlayer.move('left');
           break;
           case 38:
-            self.thePlayer.force(270, 100);
+            self.thePlayer.move('bottom');
           break;
           case 39:
-            self.thePlayer.force(0, 100);
+            self.thePlayer.move('right');
           break;
           case 40:
-            self.thePlayer.force(90, 100);
+            self.thePlayer.move('top');
           break;
         }
-      })
+      });
+      $(window).on('keyup', function(e) {
+        switch(e.which) {
+          case 37:
+            self.thePlayer.stopMoving('left');
+          break;
+          case 38:
+            self.thePlayer.stopMoving('bottom');
+          break;
+          case 39:
+            self.thePlayer.stopMoving('right');
+          break;
+          case 40:
+            self.thePlayer.stopMoving('top');
+          break;
+        }
+      });
     }
 
   };
