@@ -3,34 +3,39 @@
   <head>
     <title>Tractopelle</title>
 
-    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
-
-    <!-- Regular Dependencies -->
-    <script type="text/javascript" src="js/lib/box2d.js"></script>
-    <script type="text/javascript" src="js/lib/zepto.js"></script>
-    <script type="text/javascript" src="js/lib/underscore.js"></script>
-    <script type="text/javascript" src="js/lib/backbone.js"></script>
-
-    <!-- Config -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript">
-      // Define RAF Paul Irish style
-      window.requestAnimFrame = (function() {
-        return  window.requestAnimationFrame       || 
-                window.webkitRequestAnimationFrame || 
-                window.mozRequestAnimationFrame    || 
-                window.oRequestAnimationFrame      || 
-                window.msRequestAnimationFrame     || 
-                function(callback) {
-                  window.setTimeout(callback, 1000 / 60);
-                };
-      }) ();
+      // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+      // MIT license
+      (function() {
+        var lastTime = 0;
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
+        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+            window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+            window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+                                       || window[vendors[x]+'CancelRequestAnimationFrame'];
+        }
+
+        if (!window.requestAnimationFrame)
+            window.requestAnimationFrame = function(callback, element) {
+                var currTime = new Date().getTime();
+                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+                  timeToCall);
+                lastTime = currTime + timeToCall;
+                return id;
+            };
+
+        if (!window.cancelAnimationFrame)
+            window.cancelAnimationFrame = function(id) {
+                clearTimeout(id);
+            };
+      }());
     </script>
 
     <!-- Main -->
-    <script type="text/javascript" data-main="js/main.js" src="js/lib/require.js"></script>
+    <script type="text/javascript" data-main="src/main" src="src/lib/require.js"></script>
   </head>
 
-  <body>
-
-  </body>
+  <body></body>
 </html>
